@@ -1,6 +1,8 @@
 package com.academy.entity;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class Customer {
 
     private String id;
@@ -22,6 +24,63 @@ public class Customer {
 
     public Customer() {
     }
+
+    public static class Builder {
+        private String id;
+
+        //Mandatory
+        private String firstName;
+        private String lastName;
+        private String personalNumber;
+
+        //Optional
+        private String middleName;
+        private int age;
+        private String countryCode;
+        private String city;
+        private int monthlyIncome;
+        private String employer;
+        private String gender;
+        private String maritalStatus;
+
+        public Builder(String firstName, String lastName, String personalNumber) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.personalNumber = personalNumber;
+        }
+
+        public Builder withMiddleName(String middleName)
+        {
+            this.middleName = middleName;
+            return this;
+        }
+
+        public Builder withAge(int age)
+        {
+            this.age = age;
+            return this;
+        }
+
+        public Builder withCountryCode(String countryCode)
+        {
+            this.countryCode = countryCode;
+            return this;
+        }
+        public Customer build(){
+            Customer customer = new Customer();
+            customer.age = age;
+            customer.firstName = firstName;
+            customer.lastName = lastName;
+            customer.personalNumber = personalNumber;
+            customer.countryCode = countryCode;
+            customer.middleName = middleName;
+            return customer;
+        }
+    }
+
+
+
+
 
     public String getId() {
         return id;
